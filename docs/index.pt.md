@@ -1,3 +1,13 @@
+---
+layout: default
+---
+
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js">
+</script>
+
+
+
 # Simulação de Fluido 2D no Método Euleriano
 
 ![Simulação de Fluido](../assets/evolution.gif)
@@ -11,7 +21,7 @@ Este projeto simula o fluxo de um fluido incompressível bidimensional utilizand
 5. O sistema é bidimensional.
 6. O fluido está contido em uma caixa onde todas as paredes não possuem velocidade, exceto a parede superior, que se move.
 
-> 🌎 Este documento também está disponível em [Inglês](../README.md).
+> 🌎 Este documento também está disponível em [Inglês](./index.md).
 
 ---
 
