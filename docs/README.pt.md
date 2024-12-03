@@ -1,67 +1,101 @@
-# Simulação de Fluido Bidimensional Euleriana
+# Simulação de Fluido 2D no Método Euleriano
 
-![Simulação de Fluido](../assets/evolution.gif)
+![Simulação de Fluido](./assets/evolution.gif)
 
-Este projeto simula o fluxo de um fluido incompressível bidimensional usando a abordagem Euleriana e métodos de diferenças finitas. A simulação é baseada nas equações de Navier-Stokes, que descrevem o movimento de substâncias fluidas. Para esta demonstração, assumimos:
+Este projeto simula o fluxo de um fluido incompressível bidimensional utilizando a abordagem Euleriana e métodos de diferenças finitas. A simulação é baseada nas equações de Navier-Stokes, que descrevem o movimento de substâncias fluidas. Para esta demonstração, assumimos:
 
 1. O fluido é Newtoniano, ou seja, a viscosidade é constante.
-2. O fluido é incompressível, de forma que a densidade permanece constante.
+2. O fluido é incompressível, então a densidade permanece constante.
 3. O fluido é isotérmico, tornando a temperatura irrelevante.
 4. Nenhuma força externa é aplicada.
 5. O sistema é bidimensional.
-6. O fluido está contido em uma caixa onde todas as paredes não têm velocidade, exceto a parede superior, que se move.
+6. O fluido está contido em uma caixa onde todas as paredes não possuem velocidade, exceto a parede superior, que se move.
 
 > 🌎 Este documento também está disponível em [Inglês](docs/README.en.md).
 
 ---
 
-## Recursos
-- Solução numérica das equações de Navier-Stokes para fluxo de fluido incompressível bidimensional.
-- Esquema explícito de passos no tempo para evolução temporal.
+## Funcionalidades
+- Solução numérica das equações de Navier-Stokes para o fluxo de fluido incompressível em 2D.
+- Esquema de avanço temporal explícito para evolução no tempo.
 - Métodos de diferenças finitas para discretização espacial.
-- Solucionador iterativo de Gauss-Seidel para a equação de pressão-Poisson.
-- Visualização de campos de velocidade e dinâmica do fluxo.
+- Solucionador iterativo de Gauss-Seidel para a equação de pressão de Poisson.
+- Visualização dos campos de velocidade e da dinâmica do fluxo.
 
 ---
 
-## Equações Governantes
+## Como Funciona
+
+### Equações Governantes
 
 O comportamento do fluido é governado pelas equações de Navier-Stokes:
 
 1. **Conservação de Momento**:
    $$
-   \rho \frac{\partial \vec{u}}{\partial t} + \rho (\vec{u} \cdot \nabla) \vec{u} = -\nabla p + \mu \nabla^2 \vec{u} + \vec{F},
+   \rho \frac{\partial \vec{u}}{\partial t} = -\nabla p + \mu \nabla^2 \vec{u} + \vec{F},
    $$
-   onde:
-   - $\rho$: densidade do fluido
-   - $\vec{u} = (u, v)$: vetor de velocidade
-   - $p$: campo de pressão
-   - $\mu$: viscosidade dinâmica
-   - $\vec{F}$: forças externas
+   que considera a taxa de variação do momento devido à pressão, forças viscosas e forças externas.
 
 2. **Equação de Continuidade**:
    $$
    \nabla \cdot \vec{u} = 0,
    $$
-   que impõe a condição de incompressibilidade.
+   que garante a condição de incompressibilidade.
+
+Para um fluxo bidimensional sem força externa, as equações de Navier-Stokes se expandem em:
+
+1. **Equação de momento em $x$**:
+   $$
+   \frac{\partial u}{\partial t} 
+   + u \frac{\partial u}{\partial x} 
+   + v \frac{\partial u}{\partial y} 
+   = 
+   -\frac{1}{\rho}\frac{\partial p}{\partial x} 
+   + \frac{1}{\rho} \nu \left( \frac{\partial^2 u}{\partial x^2}  + \frac{\partial^2 u}{\partial y^2} \right).
+   $$
+
+2. **Equação de momento em $y$**:
+   $$
+   \frac{\partial v}{\partial t} 
+   + u \frac{\partial v}{\partial x} 
+   + v \frac{\partial v}{\partial y} 
+   = 
+   -\frac{1}{\rho}\frac{\partial p}{\partial y} 
+   + \frac{1}{\rho}\nu \left( \frac{\partial^2 v}{\partial x^2} + \frac{\partial^2 v}{\partial y^2} \right).
+   $$
+
+3. **Equação de continuidade**:
+   $$
+   \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} = 0.
+   $$
 
 ---
 
-## A Grade Computacional
+### Variáveis e Parâmetros
+| Variável  | Descrição                                                 |
+|-----------|-----------------------------------------------------------|
+| $\rho$    | Densidade do fluido, medindo a massa por unidade de volume. |
+| $\vec{u}$ | Vetor velocidade $(u, v)$, onde $u$ e $v$ são as componentes nas direções $x$ e $y$. |
+| $p$       | Campo de pressão, representando forças compressivas.       |
+| $\mu$     | Viscosidade dinâmica, que quantifica a resistência à deformação. |
+| $\nu$     | Viscosidade cinemática, $\nu = \frac{\mu}{\rho}$.          |
+| $\vec{F}$ | Forças externas, como gravidade.                           |
 
-O domínio computacional é discretizado em uma grade cartesiana uniforme. Cada célula representa uma unidade espacial discreta do domínio do fluido. Os componentes de velocidade $u$ e $v$ estão deslocados, definidos nas bordas das células, enquanto a pressão $p$ é definida nos centros das células.
+---
 
-Essa estrutura de grade deslocada minimiza oscilações espúrias de pressão e garante estabilidade numérica. Abaixo está um diagrama simplificado que ilustra a estrutura da grade em representações deslocadas e não deslocadas.
+### Estrutura da Simulação
 
-<img src="../assets/staggered_grid.png" alt="Campo de Pressão" width="500"/>
-
-<img src="../assets/non_staggered_grid.png" alt="Campo de Pressão" width="500"/>
-
-### Estrutura da Grade
-
-- **Pressão $p$:** Armazenada no centro de cada célula da grade.
-- **Velocidade $u$:** Definida nas bordas horizontais das células.
-- **Velocidade $v$:** Definida nas bordas verticais das células.
+1. **Inicialização**:
+   - Configurar os campos iniciais de velocidade e pressão.
+2. **Condições de Contorno**:
+   - Aplicar condições de contorno para velocidade e pressão nas paredes.
+3. **Equações de Momento**:
+   - Calcular campos intermediários de velocidade sem considerar contribuições da pressão.
+4. **Correção de Pressão**:
+   - Resolver a equação de pressão de Poisson para garantir incompressibilidade.
+   - Atualizar os campos de velocidade usando o gradiente de pressão.
+5. **Iterar**:
+   - Avançar a simulação repetindo os passos acima pelo número desejado de passos de tempo.
 
 ---
 
@@ -69,27 +103,24 @@ Essa estrutura de grade deslocada minimiza oscilações espúrias de pressão e 
 
 ### Discretização Espacial
 
-As equações são discretizadas usando métodos de diferenças finitas:
+As equações governantes são discretizadas utilizando métodos de diferenças finitas:
 
-- **Derivadas de primeira ordem** (por exemplo, para termos convectivos):
+- **Derivadas de primeira ordem** (e.g., termos convectivos):
   $$
   \frac{\partial u}{\partial x} \approx \frac{u_{i+1,j} - u_{i-1,j}}{2 \Delta x}.
   $$
 
-- **Derivadas de segunda ordem** (por exemplo, para termos difusivos):
+- **Derivadas de segunda ordem** (e.g., termos difusivos):
   $$
   \frac{\partial^2 u}{\partial x^2} \approx \frac{u_{i+1,j} - 2u_{i,j} + u_{i-1,j}}{\Delta x^2}.
   $$
 
-- **Equação de Pressão-Poisson**:
-  $$
-  \nabla^2 p = \rho \left( \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} \right),
-  $$
-  resolvida iterativamente usando o método de Gauss-Seidel.
+- **Equação de Poisson de Pressão**:
+  Resolvida iterativamente utilizando o método de Gauss-Seidel.
 
-### Integração no Tempo
+### Integração Temporal
 
-A evolução temporal é calculada usando passos no tempo explícitos, com o tamanho do passo ($\Delta t$) determinado por:
+A evolução no tempo é calculada utilizando avanço explícito, com o tamanho do passo ($\Delta t$) determinado por:
 
 1. **Condição de CFL**:
    $$
@@ -101,7 +132,7 @@ A evolução temporal é calculada usando passos no tempo explícitos, com o tam
    \Delta t < \frac{\rho \Delta x^2}{\mu}.
    $$
 
-O menor valor é escolhido para garantir a estabilidade.
+O menor valor entre os dois é escolhido para garantir a estabilidade.
 
 ---
 
@@ -110,33 +141,13 @@ O menor valor é escolhido para garantir a estabilidade.
 ### Exemplos de Saídas
 
 1. **Campo de Velocidade**:
-
-
-<img src="../assets/velocity_field.png" alt="Campo de Velocidade" width="600" />
-
-
-<img src="../assets/velocity_field_scaled.png" alt="Campo de Velocidade" width="600" />
-
-
-<img src="../assets/velocity_magnitude_contours.png" alt="Campo de Velocidade" width="600" />
-
-
-   - Magnitude da velocidade ao longo da grade computacional. A segunda imagem possui uma escala ampliada.
+   <img src="./assets/velocity_field.png" alt="Campo de Velocidade" width="600" />
 
 2. **Linhas de Corrente**:
-
-
-<img src="../assets/streamlines.png" alt="Linhas de Corrente" width="600" />
-
-
-   - Destaca os padrões de fluxo no domínio.
+   <img src="./assets/streamlines.png" alt="Linhas de Corrente" width="600" />
 
 3. **Distribuição de Pressão**:
-
-<img src="../assets/pressure_contours.png" alt="Campo de Pressão" width="600" />
-
-
-   - Visualiza o campo de pressão no domínio da simulação.
+   <img src="./assets/pressure_contours.png" alt="Campo de Pressão" width="600" />
 
 ---
 
@@ -160,13 +171,13 @@ O menor valor é escolhido para garantir a estabilidade.
    ```bash
    pip install -r requirements.txt
    ```
-
+   
 3. Abra o Jupyter Notebook:
    ```bash
    jupyter notebook main.ipynb
    ```
 
-4. Execute todas as células no notebook para rodar a simulação e gerar as visualizações.
+4. Execute todas as células do notebook para rodar a simulação e gerar visualizações.
 
 ---
 
@@ -175,9 +186,3 @@ O menor valor é escolhido para garantir a estabilidade.
 1. Bitiușcă, L.-G. (2016). *Eulerian Fluid Simulator*. MSc thesis, Bournemouth University.
 2. Saad, M. (2024 & 2019). *Computational Fluid Dynamics Lessons*. University of Utah. Disponível em [YouTube Playlist](https://www.youtube.com/playlist?list=PLEaLl6Sf-KICvBLrYFwt5h_LgedJyN59n).
 3. Bridson, R. (2015). *Fluid Simulation for Computer Graphics*. CRC Press.
-
----
-
-## Licença
-
-Este projeto está licenciado sob a licença MIT. Veja o arquivo [LICENSE](../LICENSE) para mais detalhes.

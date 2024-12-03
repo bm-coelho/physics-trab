@@ -32,7 +32,7 @@ The fluid's behavior is governed by the Navier-Stokes equations:
 
 1. **Conservation of Momentum**:
    $$
-   \rho \frac{\partial \vec{u}}{\partial t} + \rho (\vec{u} \cdot \nabla) \vec{u} = -\nabla p + \mu \nabla^2 \vec{u} + \vec{F},
+   \rho \frac{\partial \vec{u}}{\partial t} = -\nabla p + \mu \nabla^2 \vec{u} + \vec{F},
    $$
    which accounts for the rate of change of momentum due to pressure, viscous forces, and external forces.
 
@@ -42,16 +42,26 @@ The fluid's behavior is governed by the Navier-Stokes equations:
    $$
    which enforces the incompressibility condition.
 
-For two-dimensional flow, the Navier-Stokes equations expand into:
+For two-dimensional flow with no external force, the Navier-Stokes equations expand into:
 
 1. **$x$-momentum equation**:
    $$
-   \frac{\partial u}{\partial t} + u \frac{\partial u}{\partial x} + v \frac{\partial u}{\partial y} = -\frac{\partial p}{\partial x} + \nu \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} \right).
+   \frac{\partial u}{\partial t} 
+   + u \frac{\partial u}{\partial x} 
+   + v \frac{\partial u}{\partial y} 
+   = 
+   -\frac{1}{\rho}\frac{\partial p}{\partial x} 
+   + \frac{1}{\rho} \nu \left( \frac{\partial^2 u}{\partial x^2}  + \frac{\partial^2 u}{\partial y^2} \right).
    $$
 
 2. **$y$-momentum equation**:
    $$
-   \frac{\partial v}{\partial t} + u \frac{\partial v}{\partial x} + v \frac{\partial v}{\partial y} = -\frac{\partial p}{\partial y} + \nu \left( \frac{\partial^2 v}{\partial x^2} + \frac{\partial^2 v}{\partial y^2} \right).
+   \frac{\partial v}{\partial t} 
+   + u \frac{\partial v}{\partial x} 
+   + v \frac{\partial v}{\partial y} 
+   = 
+   -\frac{1}{\rho}\frac{\partial p}{\partial y} 
+   + \frac{1}{\rho}\nu \left( \frac{\partial^2 v}{\partial x^2} + \frac{\partial^2 v}{\partial y^2} \right).
    $$
 
 3. **Continuity equation**:
@@ -105,10 +115,7 @@ Finite difference methods are used to discretize the governing equations:
   \frac{\partial^2 u}{\partial x^2} \approx \frac{u_{i+1,j} - 2u_{i,j} + u_{i-1,j}}{\Delta x^2}.
   $$
 
-- **Pressure-Poisson Equation**:
-  $$
-  \nabla^2 p = \rho \left( \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} \right),
-  $$
+- **Pressure-Poisson**:
   solved iteratively using the Gauss-Seidel method.
 
 ### Time Integration
@@ -180,8 +187,3 @@ The smaller of the two is chosen to ensure stability.
 2. Saad, M. (2024 & 2019). *Computational Fluid Dynamics Lessons*. University of Utah. Available at [YouTube Playlist](https://www.youtube.com/playlist?list=PLEaLl6Sf-KICvBLrYFwt5h_LgedJyN59n).
 3. Bridson, R. (2015). *Fluid Simulation for Computer Graphics*. CRC Press.
 
----
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
