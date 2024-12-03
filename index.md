@@ -22,7 +22,7 @@ This project simulates the flow of a two-dimensional incompressible fluid using 
 5. The system is two-dimensional.
 6. The fluid is contained in a box where all walls have no velocity, except for the top wall, which moves.
 
-> 🌎 Este documento também está disponível em [Português](/physics-trab/index.pt.html).
+> 🌎 Este site também está disponível em [Português](/physics-trab/index.pt.html).
 
 ---
 
