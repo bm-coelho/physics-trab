@@ -10,7 +10,6 @@ layout: default
 
 # 2D Eulerian Fluid Simulation
 
-Test
 
 ![Fluid Flow Simulation](/physics-trab/assets/evolution.gif)
 
