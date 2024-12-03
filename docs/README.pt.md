@@ -1,6 +1,6 @@
 # Simulação de Fluido 2D no Método Euleriano
 
-![Simulação de Fluido](./assets/evolution.gif)
+![Simulação de Fluido](../assets/evolution.gif)
 
 Este projeto simula o fluxo de um fluido incompressível bidimensional utilizando a abordagem Euleriana e métodos de diferenças finitas. A simulação é baseada nas equações de Navier-Stokes, que descrevem o movimento de substâncias fluidas. Para esta demonstração, assumimos:
 
@@ -11,7 +11,7 @@ Este projeto simula o fluxo de um fluido incompressível bidimensional utilizand
 5. O sistema é bidimensional.
 6. O fluido está contido em uma caixa onde todas as paredes não possuem velocidade, exceto a parede superior, que se move.
 
-> 🌎 Este documento também está disponível em [Inglês](docs/README.en.md).
+> 🌎 Este documento também está disponível em [Inglês](../README.md).
 
 ---
 
@@ -141,13 +141,16 @@ O menor valor entre os dois é escolhido para garantir a estabilidade.
 ### Exemplos de Saídas
 
 1. **Campo de Velocidade**:
-   <img src="./assets/velocity_field.png" alt="Campo de Velocidade" width="600" />
+
+<img src="../assets/velocity_field_scaled.png" alt="Campo de Velocidade" width="600" />
 
 2. **Linhas de Corrente**:
-   <img src="./assets/streamlines.png" alt="Linhas de Corrente" width="600" />
+
+<img src="../assets/streamlines.png" alt="Linhas de Corrente" width="600" />
 
 3. **Distribuição de Pressão**:
-   <img src="./assets/pressure_contours.png" alt="Campo de Pressão" width="600" />
+
+<img src="../assets/pressure_contours.png" alt="Campo de Pressão" width="600" />
 
 ---
 

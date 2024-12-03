@@ -141,13 +141,16 @@ The smaller of the two is chosen to ensure stability.
 ### Example Outputs
 
 1. **Velocity Field**:
-   <img src="./assets/velocity_field.png" alt="Velocity Field" width="600" />
+
+<img src="./assets/velocity_field.png" alt="Velocity Field" width="600" />
 
 2. **Streamlines**:
-   <img src="./assets/streamlines.png" alt="Streamlines" width="600" />
+
+<img src="./assets/streamlines.png" alt="Streamlines" width="600" />
 
 3. **Pressure Distribution**:
-   <img src="./assets/pressure_contours.png" alt="Pressure Field" width="600" />
+
+<img src="./assets/pressure_contours.png" alt="Pressure Field" width="600" />
 
 ---
 
