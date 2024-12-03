@@ -10,7 +10,7 @@ layout: default
 
 # 2D Eulerian Fluid Simulation
 
-![Fluid Flow Simulation](../assets/evolution.gif)
+![Fluid Flow Simulation](/physics-trab/assets/evolution.gif)
 
 This project simulates the flow of a two-dimensional incompressible fluid using the Eulerian approach and finite difference methods. The simulation is based on the Navier-Stokes equations, which describe the motion of fluid substances. For this demonstration, we assume:
 
@@ -21,7 +21,7 @@ This project simulates the flow of a two-dimensional incompressible fluid using 
 5. The system is two-dimensional.
 6. The fluid is contained in a box where all walls have no velocity, except for the top wall, which moves.
 
-> 🌎 Este documento também está disponível em [Português](./README.pt.md).
+> 🌎 Este documento também está disponível em [Português](/physics-trab/docs/README.pt.md).
 
 ---
 
@@ -152,15 +152,15 @@ The smaller of the two is chosen to ensure stability.
 
 1. **Velocity Field**:
 
-<img src="../assets/velocity_field.png" alt="Velocity Field" width="600" />
+<img src="/physics-trab/assets/velocity_field.png" alt="Velocity Field" width="600" />
 
 2. **Streamlines**:
 
-<img src="../assets/streamlines.png" alt="Streamlines" width="600" />
+<img src="/physics-trab/assets/streamlines.png" alt="Streamlines" width="600" />
 
 3. **Pressure Distribution**:
 
-<img src="../assets/pressure_contours.png" alt="Pressure Field" width="600" />
+<img src="/physics-trab/assets/pressure_contours.png" alt="Pressure Field" width="600" />
 
 ---
 
