@@ -23,7 +23,7 @@ This project simulates the flow of a two-dimensional incompressible fluid using 
 5. The system is two-dimensional.
 6. The fluid is contained in a box where all walls have no velocity, except for the top wall, which moves.
 
-> 🌎 Este documento também está disponível em [Português](/physics-trab/docs/index.pt.md).
+> 🌎 Este documento também está disponível em [Português](/physics-trab/index.pt.md).
 
 ---
 
@@ -43,43 +43,53 @@ This project simulates the flow of a two-dimensional incompressible fluid using 
 The fluid's behavior is governed by the Navier-Stokes equations:
 
 1. **Conservation of Momentum**:
-   $$
-   \rho \frac{\partial \vec{u}}{\partial t} = -\nabla p + \mu \nabla^2 \vec{u} + \vec{F},
-   $$
-   which accounts for the rate of change of momentum due to pressure, viscous forces, and external forces.
+
+$$
+\rho \frac{\partial \vec{u}}{\partial t} = -\nabla p + \mu \nabla^2 \vec{u} + \vec{F},
+$$
+
+which accounts for the rate of change of momentum due to pressure, viscous forces, and external forces.
 
 2. **Continuity Equation**:
-   $$
-   \nabla \cdot \vec{u} = 0,
-   $$
-   which enforces the incompressibility condition.
+
+$$
+\nabla \cdot \vec{u} = 0,
+$$
+
+which enforces the incompressibility condition.
 
 For two-dimensional flow with no external force, the Navier-Stokes equations expand into:
 
 1. **$x$-momentum equation**:
-   $$
-   \frac{\partial u}{\partial t} 
-   + u \frac{\partial u}{\partial x} 
-   + v \frac{\partial u}{\partial y} 
-   = 
-   -\frac{1}{\rho}\frac{\partial p}{\partial x} 
-   + \frac{1}{\rho} \nu \left( \frac{\partial^2 u}{\partial x^2}  + \frac{\partial^2 u}{\partial y^2} \right).
-   $$
+
+$$
+\frac{\partial u}{\partial t} 
++ u \frac{\partial u}{\partial x} 
++ v \frac{\partial u}{\partial y} 
+= 
+-\frac{1}{\rho}\frac{\partial p}{\partial x} 
++ \frac{1}{\rho} \nu \left( \frac{\partial^2 u}{\partial x^2}  + \frac{\partial^2 u}{\partial y^2} \right).
+$$
+
 
 2. **$y$-momentum equation**:
-   $$
-   \frac{\partial v}{\partial t} 
-   + u \frac{\partial v}{\partial x} 
-   + v \frac{\partial v}{\partial y} 
-   = 
-   -\frac{1}{\rho}\frac{\partial p}{\partial y} 
-   + \frac{1}{\rho}\nu \left( \frac{\partial^2 v}{\partial x^2} + \frac{\partial^2 v}{\partial y^2} \right).
-   $$
+
+$$
+\frac{\partial v}{\partial t} 
++ u \frac{\partial v}{\partial x} 
++ v \frac{\partial v}{\partial y} 
+= 
+-\frac{1}{\rho}\frac{\partial p}{\partial y} 
++ \frac{1}{\rho}\nu \left( \frac{\partial^2 v}{\partial x^2} + \frac{\partial^2 v}{\partial y^2} \right).
+$$
+
 
 3. **Continuity equation**:
-   $$
-   \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} = 0.
-   $$
+
+$$
+\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} = 0.
+$$
+
 
 ---
 
@@ -118,14 +128,18 @@ For two-dimensional flow with no external force, the Navier-Stokes equations exp
 Finite difference methods are used to discretize the governing equations:
 
 - **First derivatives** (e.g., convective terms):
-  $$
-  \frac{\partial u}{\partial x} \approx \frac{u_{i+1,j} - u_{i-1,j}}{2 \Delta x}.
-  $$
+
+$$
+\frac{\partial u}{\partial x} \approx \frac{u_{i+1,j} - u_{i-1,j}}{2 \Delta x}.
+$$
+
 
 - **Second derivatives** (e.g., diffusive terms):
-  $$
-  \frac{\partial^2 u}{\partial x^2} \approx \frac{u_{i+1,j} - 2u_{i,j} + u_{i-1,j}}{\Delta x^2}.
-  $$
+
+$$
+\frac{\partial^2 u}{\partial x^2} \approx \frac{u_{i+1,j} - 2u_{i,j} + u_{i-1,j}}{\Delta x^2}.
+$$
+
 
 - **Pressure-Poisson**:
   solved iteratively using the Gauss-Seidel method.
@@ -135,14 +149,18 @@ Finite difference methods are used to discretize the governing equations:
 The temporal evolution is calculated using explicit time-stepping, with the time step size ($\Delta t$) determined by:
 
 1. **CFL condition**:
-   $$
-   \Delta t < \frac{\Delta x}{\text{max}(|u|)}.
-   $$
+
+$$
+\Delta t < \frac{\Delta x}{\text{max}(|u|)}.
+$$
+
 
 2. **Viscous stability constraint**:
-   $$
-   \Delta t < \frac{\rho \Delta x^2}{\mu}.
-   $$
+
+$$
+\Delta t < \frac{\rho \Delta x^2}{\mu}.
+$$
+
 
 The smaller of the two is chosen to ensure stability.
 

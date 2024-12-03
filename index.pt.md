@@ -10,7 +10,7 @@ layout: default
 
 # Simulação de Fluido 2D no Método Euleriano
 
-![Simulação de Fluido](../assets/evolution.gif)
+![Simulação de Fluido](/physics-trab/assets/evolution.gif)
 
 Este projeto simula o fluxo de um fluido incompressível bidimensional utilizando a abordagem Euleriana e métodos de diferenças finitas. A simulação é baseada nas equações de Navier-Stokes, que descrevem o movimento de substâncias fluidas. Para esta demonstração, assumimos:
 
@@ -21,7 +21,7 @@ Este projeto simula o fluxo de um fluido incompressível bidimensional utilizand
 5. O sistema é bidimensional.
 6. O fluido está contido em uma caixa onde todas as paredes não possuem velocidade, exceto a parede superior, que se move.
 
-> 🌎 Este documento também está disponível em [Inglês](./index.md).
+> 🌎 Este documento também está disponível em [Inglês](/physics-trab/index.md).
 
 ---
 
@@ -41,43 +41,53 @@ Este projeto simula o fluxo de um fluido incompressível bidimensional utilizand
 O comportamento do fluido é governado pelas equações de Navier-Stokes:
 
 1. **Conservação de Momento**:
-   $$
-   \rho \frac{\partial \vec{u}}{\partial t} = -\nabla p + \mu \nabla^2 \vec{u} + \vec{F},
-   $$
-   que considera a taxa de variação do momento devido à pressão, forças viscosas e forças externas.
+
+$$
+\rho \frac{\partial \vec{u}}{\partial t} = -\nabla p + \mu \nabla^2 \vec{u} + \vec{F},
+$$
+
+que considera a taxa de variação do momento devido à pressão, forças viscosas e forças externas.
 
 2. **Equação de Continuidade**:
-   $$
-   \nabla \cdot \vec{u} = 0,
-   $$
-   que garante a condição de incompressibilidade.
+
+$$
+\nabla \cdot \vec{u} = 0,
+$$
+
+que garante a condição de incompressibilidade.
 
 Para um fluxo bidimensional sem força externa, as equações de Navier-Stokes se expandem em:
 
 1. **Equação de momento em $x$**:
-   $$
-   \frac{\partial u}{\partial t} 
-   + u \frac{\partial u}{\partial x} 
-   + v \frac{\partial u}{\partial y} 
-   = 
-   -\frac{1}{\rho}\frac{\partial p}{\partial x} 
-   + \frac{1}{\rho} \nu \left( \frac{\partial^2 u}{\partial x^2}  + \frac{\partial^2 u}{\partial y^2} \right).
-   $$
+
+$$
+\frac{\partial u}{\partial t} 
++ u \frac{\partial u}{\partial x} 
++ v \frac{\partial u}{\partial y} 
+= 
+-\frac{1}{\rho}\frac{\partial p}{\partial x} 
++ \frac{1}{\rho} \nu \left( \frac{\partial^2 u}{\partial x^2}  + \frac{\partial^2 u}{\partial y^2} \right).
+$$
+
 
 2. **Equação de momento em $y$**:
-   $$
-   \frac{\partial v}{\partial t} 
-   + u \frac{\partial v}{\partial x} 
-   + v \frac{\partial v}{\partial y} 
-   = 
-   -\frac{1}{\rho}\frac{\partial p}{\partial y} 
-   + \frac{1}{\rho}\nu \left( \frac{\partial^2 v}{\partial x^2} + \frac{\partial^2 v}{\partial y^2} \right).
-   $$
+
+$$
+\frac{\partial v}{\partial t} 
++ u \frac{\partial v}{\partial x} 
++ v \frac{\partial v}{\partial y} 
+= 
+-\frac{1}{\rho}\frac{\partial p}{\partial y} 
++ \frac{1}{\rho}\nu \left( \frac{\partial^2 v}{\partial x^2} + \frac{\partial^2 v}{\partial y^2} \right).
+$$
+
 
 3. **Equação de continuidade**:
-   $$
-   \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} = 0.
-   $$
+
+$$
+\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} = 0.
+$$
+
 
 ---
 
@@ -116,14 +126,18 @@ Para um fluxo bidimensional sem força externa, as equações de Navier-Stokes s
 As equações governantes são discretizadas utilizando métodos de diferenças finitas:
 
 - **Derivadas de primeira ordem** (e.g., termos convectivos):
-  $$
-  \frac{\partial u}{\partial x} \approx \frac{u_{i+1,j} - u_{i-1,j}}{2 \Delta x}.
-  $$
+
+$$
+\frac{\partial u}{\partial x} \approx \frac{u_{i+1,j} - u_{i-1,j}}{2 \Delta x}.
+$$
+
 
 - **Derivadas de segunda ordem** (e.g., termos difusivos):
-  $$
-  \frac{\partial^2 u}{\partial x^2} \approx \frac{u_{i+1,j} - 2u_{i,j} + u_{i-1,j}}{\Delta x^2}.
-  $$
+
+$$
+\frac{\partial^2 u}{\partial x^2} \approx \frac{u_{i+1,j} - 2u_{i,j} + u_{i-1,j}}{\Delta x^2}.
+$$
+
 
 - **Equação de Poisson de Pressão**:
   Resolvida iterativamente utilizando o método de Gauss-Seidel.
@@ -133,14 +147,18 @@ As equações governantes são discretizadas utilizando métodos de diferenças 
 A evolução no tempo é calculada utilizando avanço explícito, com o tamanho do passo ($\Delta t$) determinado por:
 
 1. **Condição de CFL**:
-   $$
-   \Delta t < \frac{\Delta x}{\text{max}(|u|)}.
-   $$
+
+$$
+\Delta t < \frac{\Delta x}{\text{max}(|u|)}.
+$$
+
 
 2. **Restrição de estabilidade viscosa**:
-   $$
-   \Delta t < \frac{\rho \Delta x^2}{\mu}.
-   $$
+
+$$
+\Delta t < \frac{\rho \Delta x^2}{\mu}.
+$$
+
 
 O menor valor entre os dois é escolhido para garantir a estabilidade.
 
@@ -152,15 +170,15 @@ O menor valor entre os dois é escolhido para garantir a estabilidade.
 
 1. **Campo de Velocidade**:
 
-<img src="../assets/velocity_field_scaled.png" alt="Campo de Velocidade" width="600" />
+<img src="/physics-trab/assets/velocity_field_scaled.png" alt="Campo de Velocidade" width="600" />
 
 2. **Linhas de Corrente**:
 
-<img src="../assets/streamlines.png" alt="Linhas de Corrente" width="600" />
+<img src="/physics-trab/assets/streamlines.png" alt="Linhas de Corrente" width="600" />
 
 3. **Distribuição de Pressão**:
 
-<img src="../assets/pressure_contours.png" alt="Campo de Pressão" width="600" />
+<img src="/physics-trab/assets/pressure_contours.png" alt="Campo de Pressão" width="600" />
 
 ---
 
