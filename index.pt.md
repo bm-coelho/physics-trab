@@ -92,14 +92,42 @@ $$
 ---
 
 ### Variáveis e Parâmetros
-| Variável  | Descrição                                                 |
-|-----------|-----------------------------------------------------------|
-| $\rho$    | Densidade do fluido, medindo a massa por unidade de volume. |
-| $\vec{u}$ | Vetor velocidade $(u, v)$, onde $u$ e $v$ são as componentes nas direções $x$ e $y$. |
-| $p$       | Campo de pressão, representando forças compressivas.       |
-| $\mu$     | Viscosidade dinâmica, que quantifica a resistência à deformação. |
-| $\nu$     | Viscosidade cinemática, $\nu = \frac{\mu}{\rho}$.          |
-| $\vec{F}$ | Forças externas, como gravidade.                           |
+
+<table>
+  <thead>
+    <tr>
+      <th>Variável</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>\(\rho\)</td>
+      <td>Densidade do fluido, medindo a massa por unidade de volume.</td>
+    </tr>
+    <tr>
+      <td>\(\vec{u}\)</td>
+      <td>Vetor velocidade \((u, v)\), onde \(u\) e \(v\) são as componentes nas direções \(x\) e \(y\).</td>
+    </tr>
+    <tr>
+      <td>\(p\)</td>
+      <td>Campo de pressão, representando forças compressivas.</td>
+    </tr>
+    <tr>
+      <td>\(\mu\)</td>
+      <td>Viscosidade dinâmica, que quantifica a resistência à deformação.</td>
+    </tr>
+    <tr>
+      <td>\(\nu\)</td>
+      <td>Viscosidade cinemática, \(\nu = \frac{\mu}{\rho}\).</td>
+    </tr>
+    <tr>
+      <td>\(\vec{F}\)</td>
+      <td>Forças externas, como gravidade.</td>
+    </tr>
+  </tbody>
+</table>
+
 
 ---
 

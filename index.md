@@ -93,14 +93,42 @@ $$
 ---
 
 ### Variables and Parameters
-| Variable  | Description                                              |
-|-----------|----------------------------------------------------------|
-| $\rho$    | Fluid density, measuring the mass per unit volume.       |
-| $\vec{u}$ | Velocity vector $(u, v)$, where $u$ and $v$ are the $x$- and $y$-velocity components. |
-| $p$       | Pressure field, representing compressive forces.         |
-| $\mu$     | Dynamic viscosity, quantifying resistance to deformation.|
-| $\nu$     | Kinematic viscosity, $\nu = \frac{\mu}{\rho}$.           |
-| $\vec{F}$ | External forces, such as gravity.                        |
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>\(\rho\)</td>
+      <td>Fluid density, measuring the mass per unit volume.</td>
+    </tr>
+    <tr>
+      <td>\(\vec{u}\)</td>
+      <td>Velocity vector \((u, v)\), where \(u\) and \(v\) are the \(x\)- and \(y\)-velocity components.</td>
+    </tr>
+    <tr>
+      <td>\(p\)</td>
+      <td>Pressure field, representing compressive forces.</td>
+    </tr>
+    <tr>
+      <td>\(\mu\)</td>
+      <td>Dynamic viscosity, quantifying resistance to deformation.</td>
+    </tr>
+    <tr>
+      <td>\(\nu\)</td>
+      <td>Kinematic viscosity, \(\nu = \frac{\mu}{\rho}\).</td>
+    </tr>
+    <tr>
+      <td>\(\vec{F}\)</td>
+      <td>External forces, such as gravity.</td>
+    </tr>
+  </tbody>
+</table>
+
 
 ---
 
