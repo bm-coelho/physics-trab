@@ -10,6 +10,8 @@ layout: default
 
 # 2D Eulerian Fluid Simulation
 
+Test
+
 ![Fluid Flow Simulation](/physics-trab/assets/evolution.gif)
 
 This project simulates the flow of a two-dimensional incompressible fluid using the Eulerian approach and finite difference methods. The simulation is based on the Navier-Stokes equations, which describe the motion of fluid substances. For this demonstration, we assume:
