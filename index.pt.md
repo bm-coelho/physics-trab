@@ -21,7 +21,7 @@ Este projeto simula o fluxo de um fluido incompressível bidimensional utilizand
 5. O sistema é bidimensional.
 6. O fluido está contido em uma caixa onde todas as paredes não possuem velocidade, exceto a parede superior, que se move.
 
-> 🌎 Este documento também está disponível em [Inglês](/index.html).
+> 🌎 Este documento também está disponível em [Inglês](/physics-trab/).
 
 ---
 
